@@ -1,7 +1,8 @@
 from django.test import (
     SimpleTestCase,
 )  # se usa para webpages que no tienen un modelo incluido
-from django.urls import reverse
+from django.urls import reverse, resolve
+from .views import HomePageView
 
 # Create your tests here.
 
@@ -13,20 +14,18 @@ class HomepageTests(SimpleTestCase):
         self.response = self.client.get(url)
 
     def test_url_exists_at_correct_location(self):
-        self.assertEqual(response.status_code, 200)
-
-    def test_homepage_url_name(self):
-        response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_homepage_template(self):
-        response = self.client.get("/")
-        self.assertTemplateUsed(response, "home.html")
+        self.assertTemplateUsed(self.response, "home.html")
 
     def test_homepage_contains_correct_html(self):
-        response = self.client.get("/")
-        self.assertContains(response, "Bienvenidos al Himalaya")
+        self.assertContains(self.response, "Bienvenidos al Himalaya")
 
     def test_homepage_not_contains_incorrect_html(self):
-        response = self.client.get("/")
-        self.assertNotContains(response, "Esto no tendria que estar aca")
+        self.assertNotContains(self.response, "Esto no tendria que estar aca")
+
+    def test_homepage_url_resolves_homepageview(self):
+        """testeamos que la view haga matc con HomePageView"""
+        view = resolve("/")
+        self.assertEqual(view.func.__name__, HomePageView.as_view().__name__)
