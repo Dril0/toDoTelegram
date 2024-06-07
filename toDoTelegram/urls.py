@@ -18,4 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("pages.urls"))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path(
+        "accounts/", include("django.contrib.auth.urls")
+    ),  # incluimos las urls por defecto de auth app --> login, logout, passwords and resets. con el template context de django nos permite cargar los templates con data correspondiente a las views. usamos user tags para acceder a los atributos, por ejemplo user.email.
+    path("", include("pages.urls")),
+]
