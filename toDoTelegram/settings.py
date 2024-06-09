@@ -131,3 +131,5 @@ AUTH_USER_MODEL = (
 
 
 LOGIN_REDIRECT_URL = "home"  # por defecto nos reenvia a accounts/profile, pero lo cambiamos a nuestra home.
+
+LOGOUT_REDIRECT_URL = "home"  # docsdjangoproject/settings/#login-redirect-url
