@@ -128,3 +128,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = (
     "accounts.CustomUser"  # django va a utilizar nuestro CustomUser en vez de User
 )
+
+
+LOGIN_REDIRECT_URL = "home"  # por defecto nos reenvia a accounts/profile, pero lo cambiamos a nuestra home.
