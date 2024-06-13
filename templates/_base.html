@@ -1,3 +1,4 @@
+{% load static %} <!--- cargamos static en el template para poder usar el static tag -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,10 +8,12 @@
     <title>
         {% block title %}toDoTelegram{% endblock title %}
     </title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
 <body>
     <div class="container">{% block content %}{% endblock content %}</div>
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
 
 </html>
