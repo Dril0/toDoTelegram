@@ -6,6 +6,12 @@
 <h1>Bienvenidos al Himalaya</h1>
 {% if user.is_authenticated %}
 <h2>hi {{ user.email }} </h2>
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">LogOut</button>
+</form>
+<!---utilizamos POST porque estamos modificando el estado del sistema, en este caso que ya no esta mas autenticado -->
+
 {% else %}
 <p>You are not logged in</p>
 <a href="{% url 'login' %}"> Log In </a>
