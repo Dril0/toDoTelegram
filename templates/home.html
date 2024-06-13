@@ -1,9 +1,12 @@
 {% extends "_base.html" %}
 
+{% load static %}
+
 {% block title %} Home {% endblock title %}
 
 {% block content %}
 <h1>Bienvenidos al Himalaya</h1>
+<img class="leoimagen" src="{% static 'images/leo.jpg' %}">
 {% if user.is_authenticated %}
 <h2>hi {{ user.email }} </h2>
 <form method="POST" action="{% url 'logout' %}">
