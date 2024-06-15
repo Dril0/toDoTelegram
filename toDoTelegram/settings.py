@@ -123,6 +123,14 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]  # como no todas las static files son especificas de un solo proyecto creamos un directorio base para static y aca lo que hacemos es agregar otros directorios adicionales para que django los tenga en cuenta
 
+"""recopila y copia todos los archivos static definidos en staticfiles_dirs, en un solo directorio (static_roots) para llevar a produccion (permite servir los archivos estáticos desde un solo lugar)"""
+STATIC_ROOT = (
+    BASE_DIR / "staticfiles"
+)  # La ruta absoluta al directorio donde collecstatic va a ver las static files.
+
+
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
