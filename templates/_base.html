@@ -41,7 +41,13 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+              <a class="nav-link" href="{% url 'task_list' %}">toDo</a>
+            </li>
+            <li class="nav-item">
+              <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">LogOut</button>
+            </form>
             </li>
             {% else %}
             <li class="nav-item">
