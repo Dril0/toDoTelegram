@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "accounts.apps.AccountsConfig",  # agreagmos la app accounts para que django la reconozca.
     "pages.apps.PagesConfig",  # nueva app que contiene las paginas.
+    "toDo.apps.TodoConfig",  # nueva app para las listas to Do.
 ]
 
 MIDDLEWARE = [
