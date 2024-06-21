@@ -7,7 +7,16 @@
 {% block content %}
 <h2>{{ task.title }}</h2>
   <p>{{ task.description }}</p>
+  <p>Fecha y hora: {{ task.due_date }}</p>
   <a href="{% url 'task_update' task.pk %}">Editar</a>
   <a href="{% url 'task_delete' task.pk %}">Eliminar</a>
   <a href="{% url 'task_list' %}">Volver a la lista</a>
+
+  <h3>Historial de Ediciones</h3>
+  <ul>
+    {% for edit in task.edit_history.all %}
+      <li>{{ edit.edited_at }} - {{ edit.user.username }}: {{ edit.edit_reason }}</li>
+    {% endfor %}
+  </ul>
 {% endblock content %}
+
