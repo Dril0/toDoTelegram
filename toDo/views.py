@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Task
+from .models import Task, TaskEditHistory
 from .forms import TaskForm
 
 # Create your views here.
@@ -42,6 +42,12 @@ def task_update(request, pk):
     if request.method == "POST":
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
+            edit_reason = form.cleaned_data.get("edit_reason")
+            if edit_reason:
+                TaskEditHistory.objects.create(
+                    task=task, edit_reason=edit_reason, user=request.user
+                )
+            task.edit_reason = edit_reason
             form.save()
             return redirect("task_detail", pk=task.pk)
     else:
