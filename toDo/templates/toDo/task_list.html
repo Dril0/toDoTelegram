@@ -5,7 +5,13 @@
 {% block title %} Home {% endblock title %}
 
 {% block content %}
-<h1>Bienvenidos al Himalaya</h1>
-<img class="leoimagen" src="{% static 'images/leo.jpg' %}">
-
+<h1>Lista de tareas!!</h1>
+<a href="{% url 'task_create' %}">Crear Nueva Tarea</a>
+<ul>
+    {% for task in tasks %}
+      <li>
+        <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock content %}
